@@ -3,12 +3,37 @@
 #include "hashtable.h"
 #include "ex1.h"
 
+// Need to compare with answer->index_1 and answer->index_2
+
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
 
   /* YOUR CODE HERE */
-  HashTable *ht = malloc(sizeof(HashTable));
+  Answer *answer = malloc(sizeof(Answer));
+  // use retrieve to read weights
+  // If such a pair doesn’t exist for the given inputs, your function should return `NULL
+  if (length < 2)
+  {
+    return NULL;
+  }
+
+  for (int i = 0; i < length; i++)
+  {
+    // checking weights which is our key in this ht
+    int retrieved = hash_table_retrieve(ht, weights[i]);
+    // if keys exist in ht
+    if (retrieved != -1)
+    {
+
+      destroy_hash_table(ht);
+    }
+    else
+    {
+      //if entries don't exist then insert them into the ht
+      hash_table_insert(ht, limit - weights[i], i);
+    }
+  }
 
   return NULL;
 }
