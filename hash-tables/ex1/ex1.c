@@ -25,7 +25,10 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
     // if keys exist in ht
     if (retrieved != -1)
     {
-
+      answer->index_1 = i;
+      answer->index_2 = retrieved;
+      return answer;
+      // free memory
       destroy_hash_table(ht);
     }
     else
